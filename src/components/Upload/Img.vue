@@ -105,7 +105,7 @@ interface UploadEmits {
 const emit = defineEmits<UploadEmits>()
 const handleHttpUpload = async (options: UploadRequestOptions) => {
   let formData = new FormData()
-  formData.append('file', options.file)
+  formData.append('multipartFile', options.file)
   try {
     const api = props.api ?? uploadFile
     const { data } = await api(formData)

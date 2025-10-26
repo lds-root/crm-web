@@ -27,3 +27,5 @@ interface PaginationProps {
 
 defineProps<PaginationProps>()
 </script>
+
+export default {}

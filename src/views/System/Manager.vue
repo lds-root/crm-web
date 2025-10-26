@@ -36,6 +36,7 @@ import ManagerDialog from '@/views/System/components/ManagerDialog.vue'
 import { CirclePlus, Delete, EditPen, View } from '@element-plus/icons-vue'
 import { getManagerPage, addManager, editManager, deleteManager } from '@/api/modules/manager'
 import { getRoleList } from '@/api/modules/role'
+import { useDepartmentStore } from '@/store/modules/department'
 
 // 获取 ProTable 元素，调用其获取刷新数据方法（还能获取到当前查询参数，方便导出携带参数）
 const proTable = ref()
@@ -61,8 +62,17 @@ const getTableList = (params: any) => {
 // 页面按钮权限（按钮权限既可以使用 hooks，也可以直接使用 v-auth 指令，指令适合直接绑定在按钮上，hooks 适合根据按钮权限显示不同的内容）
 const { BUTTONS } = useAuthButtons()
 
+const departmentStore = useDepartmentStore()
+
 // 表格配置项
 const columns: ColumnProps<SysManager.ResManagerList>[] = [
+  {
+    prop: 'departId',
+    label: '所属部门',
+    enum: departmentStore.departmentList,
+    fieldNames: { label: 'name', value: 'id' },
+    search: { el: 'cascader', span: 2, props: { props: { checkStrictly: true }, filterable: true } }
+  },
   { type: 'selection', fixed: 'left', width: 60 },
   {
     prop: 'account',

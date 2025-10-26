@@ -272,3 +272,5 @@ defineExpose({
   selectedListIds
 })
 </script>
+
+export default {}

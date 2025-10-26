@@ -23,6 +23,7 @@
     </el-form>
   </div>
 </template>
+
 <script setup lang="ts" name="SearchForm">
 import { computed, ref } from 'vue'
 import { ColumnProps } from '@/components/ProTable/interface'
