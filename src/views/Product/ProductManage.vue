@@ -9,11 +9,9 @@
       :dataCallback="dataCallback"
       :searchCol="{ xs: 2, sm: 3, md: 4, lg: 6, xl: 8 }"
     >
-      <!-- 表格 header 按钮 -->
       <template #tableHeader>
         <el-button type="primary" :icon="CirclePlus" v-hasPermi="['sys:product:add']" @click="openDrawer('新增')">新增商品</el-button>
       </template>
-      <!-- 表格操作 -->
       <template #operation="scope">
         <el-button type="primary" link :icon="EditPen" v-hasPermi="['sys:product:edit']" @click="openDrawer('编辑', scope.row)">编辑</el-button>
         <el-button v-if="scope.row.status == 2" type="primary" link :icon="EditPen" v-hasPermi="['sys:product:up']" @click="openStatusDialog('商品上架', scope.row)"
@@ -32,7 +30,7 @@
 import { ProductApi } from '@/api/modules/product'
 import ProTable from '@/components/ProTable/index.vue'
 import { ColumnProps } from '@/components/ProTable/interface'
-import { ref, reactive } from 'vue'
+import { ref, reactive, defineExpose } from 'vue' // 🚨 引入 defineExpose
 import { ProductStatusList } from '@/configs/enum'
 import { CirclePlus, EditPen } from '@element-plus/icons-vue'
 import ProductDialog from '@/views/Product/component/ProductDialog.vue'
@@ -111,4 +109,16 @@ const columns: ColumnProps[] = [
   },
   { prop: 'operation', label: '操作', fixed: 'right', width: 230 }
 ]
+
+// 🚨 核心修正：添加获取多选列表的方法
+const getSelectedList = () => {
+  // 假设 ProTable (element-plus 封装) 将选中的行数据存储在 selectedList 中
+  // 由于商品是多选，返回整个列表
+  return proTable.value?.selectedList || []
+}
+
+// 🚨 核心修正：将 getSelectedList 方法暴露给父组件 (ProductDialog)
+defineExpose({
+  getSelectedList
+})
 </script>

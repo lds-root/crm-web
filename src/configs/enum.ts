@@ -96,3 +96,57 @@ export const ProductStatusList: { [key in ProductStatus]: EnumInfo } = {
   [ProductStatus.ONLINE]: { value: 1, label: '上架' },
   [ProductStatus.OFFLINE]: { value: 2, label: '下架' }
 }
+
+export enum ContractsStatus {
+  INITIALIZING,
+  UNDER_REVIEW,
+  APPROVED,
+  REJECTED
+}
+
+export const ContractStatusList: { [key in ContractsStatus]: EnumInfo } = {
+  [ContractsStatus.INITIALIZING]: { value: 0, label: '初始化' },
+  [ContractsStatus.UNDER_REVIEW]: { value: 1, label: '审核中' },
+  [ContractsStatus.APPROVED]: { value: 2, label: '审核通过' },
+  [ContractsStatus.REJECTED]: { value: 3, label: '审核未通过' }
+}
+
+export enum LeadStatus {
+  NOT_CONVERTED,
+  CONVERTED,
+  INVALID
+}
+
+export enum FollowUpMethod {
+  PHONE,
+  VISIT,
+  WECHAT,
+  SMS
+}
+
+export const LeadStatusList: { [key in LeadStatus]: EnumInfo } = {
+  [LeadStatus.NOT_CONVERTED]: { value: 0, label: '未转化为客户' },
+  [LeadStatus.CONVERTED]: { value: 1, label: '已转换为客户' },
+  [LeadStatus.INVALID]: { value: 2, label: '无用线索' }
+}
+
+export const FollowUpMethodList: { [key in FollowUpMethod]: EnumInfo } = {
+  [FollowUpMethod.PHONE]: { value: 0, label: '电话' },
+  [FollowUpMethod.VISIT]: { value: 1, label: '上门拜访' },
+  [FollowUpMethod.WECHAT]: { value: 2, label: '微信' },
+  [FollowUpMethod.SMS]: { value: 3, label: '短信' }
+}
+
+export enum OperType {
+  OTHER,
+  INSERT,
+  UPDATE,
+  DELETE
+}
+
+export const OperTypeList: { [key in OperType]: EnumInfo } = {
+  [OperType.OTHER]: { value: 0, label: '其他' },
+  [OperType.INSERT]: { value: 1, label: '新增' },
+  [OperType.UPDATE]: { value: 2, label: '修改' },
+  [OperType.DELETE]: { value: 3, label: '删除' }
+}
